@@ -1,87 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="IndexStyle.css">
-    <title>Practica1</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/login.js"></script>
+  <title>Practica1</title>
 </head>
 <body>
-    <header>
-        <h1>Anales de la ciencia</h1>
-    </header>
-    <nav>
-            <form action="">
-            <label for="fieldUser">Usuario:</label>
-            <input type="text" name="user" id="fieldUser">
+  <header class="bg-dark text-white d-flex flex-row align-items-center justify-content-between flex-wrap">
+    <div class="ms-3 mb-3 mt-3">
+      <h1 class="font-weight-normal text-white fs-2">Anales de la ciencia</h1>
+    </div>
 
-            <label for="fieldPassword">Contraseña:</label>
-            <input type="password" name="password" id="fieldPassword">
-
-            <input type="submit" value="Login">
-            </form>
-    </nav>
-    <br>
-    <main>
-        <table>
-            <tr>
-                <td>
-                    <img src="Resources/sgml.png">
-                    <a>SGML</a>
-                </td>
-                <td>
-                    <img src="Resources/Vannervar_Bush.jfif">
-                    <a>Vannervar <br> Bush</a>
-                </td>
-                <td>
-                    <img src="Resources/ibm.png">
-                    <a>IBM</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Resources/xml.png">
-                    <a>XML</a>
-                </td>
-                <td rowspan="2">
-                    <img src="Resources/Sir_Tim_Berners-Lee.jpg">
-                    <a href="bernerlee.html">Tim <br> Berners Lee</a>
-                </td>
-                <td>
-                    <img src="Resources/cern.png">
-                    <a>CERN</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Resources/html.png">
-                    <a href="html.html">HTML</a>
-                </td>
-                <td>
-                    <img src="Resources/w3c.png">
-                    <a>W3C</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Resources/https.png">
-                    <a>HTTPS</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Resources/css.png">
-                    <a>CSS</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="Resources/javascript.png">
-                    <a>JAVASCRIPT</a>
-                </td>
-            </tr>
-        </table>
-    </main>
+    <div>
+      <form class="d-flex flex-row align-items-center flex-wrap me-4 ">
+        <div class="mb-3 mt-3">
+          <input type="text" class="form-control form-control-sm" placeholder="Usuario" id="fieldUser"/>
+        </div>
+        <div class="mb-3 mt-3 ms-1">
+          <input type="text" class="form-control form-control-sm" placeholder="Contraseña" id="fieldPassword"/>
+        </div>
+        <div class="mb-3 mt-3 ms-2">
+          <button type="button" class="btn btn-primary" onclick="login()">
+            Iniciar sesión
+          </button>
+        </div>
+      </form>
+    </div>
+  </header>
+  
+  <main>
+    <div id="zonaAlerta">
+      <div id="alerta">
+      </div>
+    </div>
+  </main>
 </body>
 </html>
