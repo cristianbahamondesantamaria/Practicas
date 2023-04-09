@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <script src="js/jquery-3.6.4.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/login.js"></script>
   <title>Practica1</title>
@@ -15,7 +16,7 @@
       <h1 class="font-weight-normal text-white fs-2">Anales de la ciencia</h1>
     </div>
 
-    <div>
+    <div id="login-form">
       <form class="d-flex flex-row align-items-center flex-wrap me-4 ">
         <div class="mb-3 mt-3">
           <input type="text" class="form-control form-control-sm" placeholder="Usuario" id="fieldUser"/>
@@ -24,12 +25,17 @@
           <input type="text" class="form-control form-control-sm" placeholder="Contraseña" id="fieldPassword"/>
         </div>
         <div class="mb-3 mt-3 ms-2">
-          <button type="button" class="btn btn-primary" onclick="login()">
+          <button id="login-button" type="button" class="btn btn-primary">
             Iniciar sesión
           </button>
         </div>
       </form>
     </div>
+
+    <div id="logout-form" class="mb-3 mt-3 ms-2" style="display: none;">
+      <button id="logout-button" class="btn btn-danger">Cerrar sesión</button>
+    </div>
+    
   </header>
   
   <main>
@@ -37,6 +43,41 @@
       <div id="alerta">
       </div>
     </div>
+    <br>
+    <div id="contenido" class="d-flex align-items-center justify-content-between flex-wrap">
+      <div id="Productos" class="d-flex flex-column flex-wrap">
+        <div class="card mb-3" style="width: 18rem;">
+          <img src="Resources/html.png" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">HTML</h5>
+            <a href="html.html" class="btn btn-primary">Detalles</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="Personas" class="d-flex flex-column flex-wrap">
+        <div class="card" style="width: 18rem;">
+          <img src="Resources/Sir_Tim_Berners-Lee.jpg" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">Bernard</h5>
+            <a href="bernerlee.html" class="btn btn-primary">Detalles</a>
+          </div>
+        </div>
+      </div>
+
+      <div id="Entidades" class="d-flex flex-column flex-wrap">
+        <div class="card" style="width: 18rem;">
+          <img src="Resources/w3c.png" class="card-img-top">
+          <div class="card-body">
+            <h5 class="card-title">w3c</h5>
+            <a href="" class="btn btn-primary">Detalles</a>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    
+    
   </main>
 </body>
 </html>
