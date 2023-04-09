@@ -30,7 +30,7 @@ function mostrarProductos() {
     const productos = JSON.parse(localStorage.getItem("productos"));
     const divPrincipal = $('#Productos');
     for (var i = 0; i < productos.length; i++) {
-        if (productos[i].persona === detalles.nombre) {
+        if (productos[i].personas.includes(detalles.nombre)) {
             let cartaDiv = $('<div class="card d-flex align-items-center justify-content-center m-5 " style="max-width: 540px;"></div>');
             let row = $('<div class="row g-0"></div>');
 
@@ -62,7 +62,7 @@ function mostrarEntidades() {
     const entidades = JSON.parse(localStorage.getItem("entidades"));
     const divPrincipal = $('#Entidades');
     for (var i = 0; i < entidades.length; i++) {
-        if (entidades[i].persona === detalles.nombre) {
+        if (entidades[i].personas.includes(detalles.nombre)) {
             let cartaDiv = $('<div class="card d-flex align-items-center justify-content-center m-5 " style="max-width: 540px;"></div>');
             let row = $('<div class="row g-0"></div>');
 

@@ -15,7 +15,8 @@ class Entidad {
     this.fechaDefuncion = fechaDefuncion;
     this.imagen = imagen;
     this.wikipedia = wikipedia;
-    this.persona = persona;
+    this.personas = [];
+    this.personas.push(persona);
   }
 }
 
@@ -26,8 +27,10 @@ class Producto {
     this.fechaDefuncion = fechaDefuncion;
     this.imagen = imagen;
     this.wikipedia = wikipedia;
-    this.persona = persona;
-    this.entidad = entidad;
+    this.personas = [];
+    this.entidades = [];
+    this.personas.push(persona);
+    this.entidades.push(entidad);
   }
 }
 function mostrarPersonas() {
