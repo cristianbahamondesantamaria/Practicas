@@ -1,6 +1,101 @@
+class Persona {
+  constructor(nombre, fechaNacimiento, fechaDefuncion, imagen, wikipedia) {
+    this.nombre = nombre;
+    this.fechaNacimiento = fechaNacimiento;
+    this.fechaDefuncion = fechaDefuncion;
+    this.imagen = imagen;
+    this.wikipedia = wikipedia;
+  }
+}
+
+class Entidad {
+  constructor(Nombre, FechaCreacion, FechaDefuncion, Imagen, Wikipedia, Persona) {
+    this.Nombre = Nombre;
+    this.FechaCreacion = FechaCreacion;
+    this.FechaDefuncion = FechaDefuncion;
+    this.Imagen = Imagen;
+    this.Wikipedia = Wikipedia;
+    this.Personas = [];
+    this.Personas.push(Persona);
+  }
+}
+
+class Producto {
+  constructor(Nombre, FechaCreacion, FechaDefuncion, Imagen, Wikipedia, Persona, Entidad) {
+    this.Nombre = Nombre;
+    this.FechaCreacion = FechaCreacion;
+    this.FechaDefuncion = FechaDefuncion;
+    this.Imagen = Imagen;
+    this.Wikipedia = Wikipedia;
+    this.Personas = [];
+    this.Personas.push(Persona);
+    this.Entidades = [];
+    this.Entidades.push(Entidad);
+  }
+}
+function mostrarPersonas() {
+  var personas = JSON.parse(localStorage.getItem("personas"));
+  const divPrincipal = $('#Personas');
+  for (var i = 0; i < personas.length; i++) {
+    let cartaDiv = $('<div class="card" style="width: 18rem;"></div>');
+    let imagen = $('<img class="card-img-top" src="' + personas[i].imagen + '">');
+    let cartaBody = $('<div class="card-body"></div>');
+    let titulo = $('<h5 class="card-title">' + personas[i].nombre + '</h5>');
+    let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    var persona = personas[i];
+    detalles.click(function () {
+      localStorage.setItem("personaDetalles", JSON.stringify(persona));
+      window.location.href = 'detallesPersona.html';
+    });
+    cartaBody.append(titulo);
+    cartaBody.append(detalles);
+    cartaDiv.append(imagen);
+    cartaDiv.append(cartaBody);
+    divPrincipal.append(cartaDiv);
+  }
+}
+
+function mostrarEntidades() {
+  var entidades = JSON.parse(localStorage.getItem("entidades"));
+  const divPrincipal = $('#Entidades');
+  for (var i = 0; i < entidades.length; i++) {
+    let cartaDiv = $('<div class="card" style="width: 18rem;"></div>');
+    let imagen = $('<img class="card-img-top" src="' + entidades[i].Imagen + '">');
+    let cartaBody = $('<div class="card-body"></div>');
+    let titulo = $('<h5 class="card-title">' + entidades[i].Nombre + '</h5>');
+    let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    cartaBody.append(titulo);
+    cartaBody.append(detalles);
+    cartaDiv.append(imagen);
+    cartaDiv.append(cartaBody);
+    divPrincipal.append(cartaDiv);
+  }
+}
+
+function mostrarProductos() {
+  var productos = JSON.parse(localStorage.getItem("productos"));
+  const divPrincipal = $('#Productos');
+  for (var i = 0; i < productos.length; i++) {
+    let cartaDiv = $('<div class="card" style="width: 18rem;"></div>');
+    let imagen = $('<img class="card-img-top" src="' + productos[i].Imagen + '">');
+    let cartaBody = $('<div class="card-body"></div>');
+    let titulo = $('<h5 class="card-title">' + productos[i].Nombre + '</h5>');
+    let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    cartaBody.append(titulo);
+    cartaBody.append(detalles);
+    cartaDiv.append(imagen);
+    cartaDiv.append(cartaBody);
+    divPrincipal.append(cartaDiv);
+  }
+}
+
 function init() {
-  if (users === null) {
-    // La lista de usuarios no existe, crearla
+  var users = localStorage.getItem("users");
+  var personas = localStorage.getItem("personas");
+  var entidades = localStorage.getItem("entidades");
+  var productos = localStorage.getItem("productos");
+  // La lista de usuarios, personas, entidades o productos no existe, crearla
+  if (users === null && personas === null && entidades === null && productos === null) {
     var usersArray = [
       { username: "x", password: "x" },
       { username: "y", password: "y" },
@@ -8,7 +103,31 @@ function init() {
     ];
     var usersJSON = JSON.stringify(usersArray);
     localStorage.setItem("users", usersJSON);
+
+    // Creo una persona por defecto
+    var persona = new Persona('Tim Berners-Lee', '8 de junio de 1955', 'Actualidad', '/Resources/Sir_Tim_Berners-Lee.jpg', 'https://es.wikipedia.org/wiki/Tim_Berners-Lee');
+    var personasArray = [];
+    personasArray.push(persona);
+    var personasJSON = JSON.stringify(personasArray);
+    localStorage.setItem("personas", personasJSON);
+
+    // Creo una entidad por defecto
+    var entidad = new Entidad("World Wide Web Consortium", "1994", "Actualidad", "/Resources/w3c.png", "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium", persona);
+    var entidadesArray = [];
+    entidadesArray.push(entidad);
+    var entidadesJSON = JSON.stringify(entidadesArray);
+    localStorage.setItem("entidades", entidadesJSON);
+
+    // Creo un producto por defecto
+    var producto = new Producto("HTML", "1991", "Actualidad", "/Resources/html.png", "https://es.wikipedia.org/wiki/HTML", persona, entidad);
+    var productosArray = [];
+    productosArray.push(producto);
+    var productosJSON = JSON.stringify(productosArray);
+    localStorage.setItem("productos", productosJSON);
   }
+  mostrarPersonas();
+  mostrarEntidades();
+  mostrarProductos();
 }
 window.addEventListener("load", init);
 
