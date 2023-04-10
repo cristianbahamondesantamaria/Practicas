@@ -86,6 +86,11 @@ function mostrarProductos() {
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + productos[i].nombre + '</h5>');
     let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    var producto = productos[i];
+    detalles.click(function () {
+      localStorage.setItem("productoDetalles", JSON.stringify(producto));
+      window.location.href = 'detallesProducto.html';
+    });
     cartaBody.append(titulo);
     cartaBody.append(detalles);
     cartaDiv.append(imagen);

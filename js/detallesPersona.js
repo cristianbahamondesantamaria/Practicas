@@ -9,7 +9,7 @@ function mostrarPersona() {
     let cardBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + detalles.nombre + '</h5>');
     var muerte = "Actualidad" === detalles.fechaDefuncion ? "" : "y fallecio en " + detalles.fechaDefuncion;
-    let descripcion = $('<p class="card-text">' + detalles.nombre + ' nació el '
+    let descripcion = $('<p class="card-text">Nació el '
         + detalles.fechaNacimiento + ' '
         + muerte +
         '</p>');
@@ -41,7 +41,7 @@ function mostrarProductos() {
             let colomright = $('<div class="col-md-8"></div>');
             let cartaBody = $('<div class="card-body"></div>');
             let titulo = $('<h5 class="card-title">' + productos[i].nombre + '</h5>');
-            let detalles = $('<button class="btn btn-primary">Ir a ' + productos[i].nombre + '</button>');
+            let detalles = $('<button class="btn btn-primary">Ver detalles</button>');
             var producto= productos[i];
             detalles.click(function () {
                 localStorage.setItem("productoDetalles", JSON.stringify(producto));
@@ -74,7 +74,7 @@ function mostrarEntidades() {
             let colomright = $('<div class="col-md-8"></div>');
             let cartaBody = $('<div class="card-body"></div>');
             let titulo = $('<h5 class="card-title">' + entidades[i].nombre + '</h5>');
-            let detalles = $('<button class="btn btn-primary">Ir a ' + entidades[i].nombre + '</button>');
+            let detalles = $('<button class="btn btn-primary">Ver detalles</button>');
             var entidad= entidades[i];
             detalles.click(function () {
                 localStorage.setItem("entidadDetalles", JSON.stringify(entidad) );
