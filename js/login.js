@@ -41,7 +41,9 @@ function mostrarPersonas() {
     let imagen = $('<img class="card-img-top" src="' + personas[i].imagen + '">');
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + personas[i].nombre + '</h5>');
-    let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    let detalles = $('<button class="detalles btn btn-primary">Detalles</button>');
+    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" >Editar</button>');
+    let borrar = $('<button class="borrar btn btn-danger" style="display:none;" >Borrar</button>');
     var persona = personas[i];
     detalles.click(function () {
       localStorage.setItem("personaDetalles", JSON.stringify(persona));
@@ -49,10 +51,17 @@ function mostrarPersonas() {
     });
     cartaBody.append(titulo);
     cartaBody.append(detalles);
+    cartaBody.append(editar);
+    cartaBody.append(borrar);
     cartaDiv.append(imagen);
     cartaDiv.append(cartaBody);
     divPrincipal.append(cartaDiv);
   }
+  let botonAgregar = $('<button class="agregar btn btn-success mt-3">Añadir</button>');
+  divPrincipal.append(botonAgregar);
+  botonAgregar.click(function () {
+    $('#modalAgregarPersona').modal('show');
+  });
 }
 
 function mostrarEntidades() {
@@ -63,7 +72,9 @@ function mostrarEntidades() {
     let imagen = $('<img class="card-img-top" src="' + entidades[i].imagen + '">');
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + entidades[i].nombre + '</h5>');
-    let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    let detalles = $('<button class="detalles btn btn-primary">Detalles</button>');
+    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" >Editar</button>');
+    let borrar = $('<button class="borrar btn btn-danger" style="display:none;" >Borrar</button>');
     var entidad = entidades[i];
     detalles.click(function () {
       localStorage.setItem("entidadDetalles", JSON.stringify(entidad));
@@ -71,6 +82,8 @@ function mostrarEntidades() {
     });
     cartaBody.append(titulo);
     cartaBody.append(detalles);
+    cartaBody.append(editar);
+    cartaBody.append(borrar);
     cartaDiv.append(imagen);
     cartaDiv.append(cartaBody);
     divPrincipal.append(cartaDiv);
@@ -85,7 +98,9 @@ function mostrarProductos() {
     let imagen = $('<img class="card-img-top" src="' + productos[i].imagen + '">');
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + productos[i].nombre + '</h5>');
-    let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    let detalles = $('<button class="detalles btn btn-primary">Detalles</button>');
+    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" >Editar</button>');
+    let borrar = $('<button class="borrar btn btn-danger" style="display:none;" >Borrar</button>');
     var producto = productos[i];
     detalles.click(function () {
       localStorage.setItem("productoDetalles", JSON.stringify(producto));
@@ -93,6 +108,8 @@ function mostrarProductos() {
     });
     cartaBody.append(titulo);
     cartaBody.append(detalles);
+    cartaBody.append(editar);
+    cartaBody.append(borrar);
     cartaDiv.append(imagen);
     cartaDiv.append(cartaBody);
     divPrincipal.append(cartaDiv);
@@ -141,6 +158,17 @@ function init() {
 }
 window.addEventListener("load", init);
 
+function addPersona() {
+  const nombre = $('#fieldNombrePersona').val();
+  const fechaNacimiento = $('#fieldFechaNacimientoPersona').val();
+  const fechaMuerte = $('#fieldFechaDefuncionPersona').val();
+  const wikipedia = $('#fieldWikiPersona').val();
+  const imagen = $('#fieldImagenPersona').val();
+
+
+}
+
+
 $(document).ready(function () {
   var alert = document.getElementById("alerta");
   $('#login-button').click(function () {
@@ -155,6 +183,9 @@ $(document).ready(function () {
         alert.textContent = "Inicio de sesión exitoso";
         var container = document.getElementById("zonaAlerta");
         container.appendChild(alert);
+        $(".detalles").hide();
+        $(".editar").show();
+        $(".borrar").show();
         $('#login-form').hide();
         $('#logout-form').show();
         setTimeout(function () {
@@ -174,5 +205,8 @@ $(document).ready(function () {
     // Aquí va la lógica de la función de logout
     $('#logout-form').hide();
     $('#login-form').show();
+    $(".editar").hide();
+    $(".borrar").hide();
+    $(".detalles").show();
   });
 });
