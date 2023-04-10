@@ -64,6 +64,11 @@ function mostrarEntidades() {
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + entidades[i].nombre + '</h5>');
     let detalles = $('<button class="btn btn-primary">Detalles</button>');
+    var entidad = entidades[i];
+    detalles.click(function () {
+      localStorage.setItem("entidadDetalles", JSON.stringify(entidad));
+      window.location.href = 'detallesEntidad.html';
+    });
     cartaBody.append(titulo);
     cartaBody.append(detalles);
     cartaDiv.append(imagen);

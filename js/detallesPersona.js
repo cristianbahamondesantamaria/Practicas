@@ -42,8 +42,9 @@ function mostrarProductos() {
             let cartaBody = $('<div class="card-body"></div>');
             let titulo = $('<h5 class="card-title">' + productos[i].nombre + '</h5>');
             let detalles = $('<button class="btn btn-primary">Ir a ' + productos[i].nombre + '</button>');
+            var producto= productos[i];
             detalles.click(function () {
-                localStorage.setItem("productoDetalles", JSON.stringify(productos[i]));
+                localStorage.setItem("productoDetalles", JSON.stringify(producto));
                 window.location.href = "detallesProducto.html";
             });
             cartaBody.append(titulo);
@@ -74,9 +75,10 @@ function mostrarEntidades() {
             let cartaBody = $('<div class="card-body"></div>');
             let titulo = $('<h5 class="card-title">' + entidades[i].nombre + '</h5>');
             let detalles = $('<button class="btn btn-primary">Ir a ' + entidades[i].nombre + '</button>');
+            var entidad= entidades[i];
             detalles.click(function () {
-                localStorage.setItem("enitdadDetalles", JSON.stringify(entidades[i]));
-                window.location.href = "detallesProducto.html";
+                localStorage.setItem("entidadDetalles", JSON.stringify(entidad) );
+                window.location.href = "detallesEntidad.html";
             });
             cartaBody.append(titulo);
             cartaBody.append(detalles);
