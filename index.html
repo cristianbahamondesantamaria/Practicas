@@ -32,7 +32,7 @@
       </form>
     </div>
 
-    <div id="logout-form" class="mb-3 mt-3 ms-2" style="display: none;">
+    <div id="logout-form" class="mb-3 mt-3 ms-2 me-4" style="display: none;">
       <button id="logout-button" class="btn btn-danger">Cerrar sesión</button>
     </div>
     
@@ -72,7 +72,97 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-primary" onclick="addPersona()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAgregarEntidad" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Añadir Entidad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formAgregarEntidad">
+              <div class="mb-3">
+                <label for="fieldNombreEntidad" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="fieldNombreEntidad" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="fieldFechaCreacionEntidad" class="form-label">Fecha de creación</label>
+                <input type="date" class="form-control" id="fieldFechaCreacionEntidad">
+              </div>
+              <div class="mb-3">
+                <label for="fieldFechaDesaparicionEntidad" class="form-label">Fecha de desaparición (si no ha cerrado dejar vacio)</label>
+                <input type="date" class="form-control" id="fieldFechaDesaparicionEntidad">
+              </div>
+              <div class="mb-3">
+                <label for="fieldWikiEntidad" class="form-label">Wikipedia</label>
+                <input type="text" class="form-control" id="fieldWikiEntidad" placeholder="URL Wikipedia">
+              </div>
+              <div class="mb-3">
+                <label for="fieldPersonasEntidad" class="form-label">Personas (separar personas unicamente por comas)</label>
+                <input type="text" class="form-control" id="fieldPersonasEntidad" placeholder="Personas que forman la entidad">
+              </div>
+              <div class="dropzone mb-3">
+                <label for="fieldImagenEntidad" class="form-label">Imagen</label>
+                <input type="file" class="form-control-file" id="fieldImagenEntidad">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="addEntidad()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAgregarProducto" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Añadir Producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formAgregarProducto">
+              <div class="mb-3">
+                <label for="fieldNombreProducto" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="fieldNombreProducto" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="fieldFechaCreacionProducto" class="form-label">Fecha de creación</label>
+                <input type="date" class="form-control" id="fieldFechaCreacionProducto">
+              </div>
+              <div class="mb-3">
+                <label for="fieldFechaDesaparicionProducto" class="form-label">Fecha de desaparición (si no ha cerrado dejar vacio)</label>
+                <input type="date" class="form-control" id="fieldFechaDesaparicionProducto">
+              </div>
+              <div class="mb-3">
+                <label for="fieldWikiProducto" class="form-label">Wikipedia</label>
+                <input type="text" class="form-control" id="fieldWikiProducto" placeholder="URL Wikipedia">
+              </div>
+              <div class="mb-3">
+                <label for="fieldPersonasProducto" class="form-label">Personas (separar personas unicamente por comas)</label>
+                <input type="text" class="form-control" id="fieldPersonasProducto" placeholder="Personas que participaron en la creacion">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEntidadesProducto" class="form-label">Personas (separar personas unicamente por comas)</label>
+                <input type="text" class="form-control" id="fieldEntidadesProducto" placeholder="Entidades que participaron en la creacion">
+              </div>
+              <div class="dropzone mb-3">
+                <label for="fieldImagenProducto" class="form-label">Imagen</label>
+                <input type="file" class="form-control-file" id="fieldImagenProducto">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="addProducto()">Save changes</button>
           </div>
         </div>
       </div>
@@ -83,7 +173,7 @@
       </div>
     </div>
     <br>
-    <div id="contenido" class="d-flex align-items-center justify-content-between flex-wrap">
+    <div id="contenido" class="d-flex  justify-content-between flex-wrap">
       <div></div>
       
       <div id="Productos" class="d-flex flex-column flex-wrap"></div>
@@ -94,7 +184,7 @@
 
       <div></div>
     </div>
-    
+    <br>
     
   </main>
 </body>
