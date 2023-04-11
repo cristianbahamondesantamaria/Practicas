@@ -51,13 +51,23 @@ function mostrarPersonas() {
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + personas[i].nombre + '</h5>');
     let detalles = $('<button class="detalles btn btn-primary" value= ' + i + '>Detalles</button>');
-    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" >Editar</button>');
+    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" value= ' + i + '>Editar</button>');
     let borrar = $('<button class="borrar btn btn-danger" style="display:none;" value= ' + i + '>Borrar</button>');
     detalles.click(function () {
       var personas = JSON.parse(localStorage.getItem("personas"));
       var persona = personas[$(this).val()];
       localStorage.setItem("personaDetalles", JSON.stringify(persona));
       window.location.href = 'detallesPersona.html';
+    });
+    editar.click(function () {
+      var personas = JSON.parse(localStorage.getItem("personas"));
+      var persona = personas[$(this).val()];
+      $('#fieldEditarNombrePersona').val(persona.nombre);
+      $('#fieldEditarFechaNacimientoPersona').val(persona.fechaNacimiento);
+      $('#fieldEditarFechaDefuncionPersona').val(persona.fechaDefuncion);
+      $('#fieldEditarWikiPersona').val(persona.wikipedia);
+      $('#saveEditarPersona').val($(this).val());
+      $('#modalEditarPersona').modal('show');
     });
     borrar.click(function () {
       var personas = JSON.parse(localStorage.getItem("personas"));
@@ -197,7 +207,7 @@ function init() {
     localStorage.setItem("users", usersJSON);
 
     // Creo una persona por defecto
-    var persona = new Persona('Tim Berners-Lee', '8 de junio de 1955', 'Actualidad', '/Resources/Sir_Tim_Berners-Lee.jpg', 'https://es.wikipedia.org/wiki/Tim_Berners-Lee');
+    var persona = new Persona('Tim Berners-Lee', '1955-06-08', '', '/Resources/Sir_Tim_Berners-Lee.jpg', 'https://es.wikipedia.org/wiki/Tim_Berners-Lee');
     var personasArray = [];
     personasArray.push(persona);
     var personasJSON = JSON.stringify(personasArray);
@@ -361,5 +371,43 @@ $(document).ready(function () {
     $(".agregar").hide();
     $(".detalles").show();
     localStorage.setItem("session", "false");
+  });
+
+  //Funcionalidad del botón de editarPersona
+  $('#saveEditarPersona').click(function () {
+    const nombre = $('#fieldEditarNombrePersona').val();
+    const fechaNacimiento = $('#fieldEditarFechaNacimientoPersona').val();
+    var fechaMuerte = $('#fieldEditarFechaDefuncionPersona').val();
+    const wikipedia = $('#fieldEditarWikiPersona').val();
+    var imagen = $('#fieldEditarImagenPersona').val();
+    var indice = $(this).val();
+    if (nombre != "" && fechaNacimiento != "" && wikipedia != "") {
+      if (fechaMuerte == "") {
+        fechaMuerte = "Actualidad";
+      }
+      if(imagen != ""){
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          imagen = e.target.result;
+          var personas = JSON.parse(localStorage.getItem("personas"));
+          const persona = new Persona(nombre, fechaNacimiento, fechaMuerte, imagen, wikipedia);
+          personas.splice(indice, 1);
+          personas.splice(indice, 0, persona);
+          var personasJSON = JSON.stringify(personas);
+          localStorage.setItem("personas", personasJSON);
+         window.location.href = 'index.html';
+        }
+        reader.readAsDataURL($('#fieldEditarImagenPersona')[0].files[0]);
+      }else{
+        var personas = JSON.parse(localStorage.getItem("personas"));
+        const persona = new Persona(nombre, fechaNacimiento, fechaMuerte, personas[indice].imagen, wikipedia);
+        personas.splice(indice, 1);
+        personas.splice(indice, 0, persona);
+        var personasJSON = JSON.stringify(personas);
+        localStorage.setItem("personas", personasJSON);
+        window.location.href = 'index.html';
+      }
+      
+    }
   });
 });

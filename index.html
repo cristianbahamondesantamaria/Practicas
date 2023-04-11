@@ -39,6 +39,7 @@
   </header>
   
   <main>
+    <!-- Modal para añadir personas -->
     <div class="modal" id="modalAgregarPersona" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -77,6 +78,8 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal para añadir entidades -->
 
     <div class="modal" id="modalAgregarEntidad" tabindex="-1">
       <div class="modal-dialog">
@@ -121,6 +124,7 @@
       </div>
     </div>
 
+    <!-- Modal para añadir productos -->
     <div class="modal" id="modalAgregarProducto" tabindex="-1">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -168,6 +172,45 @@
       </div>
     </div>
     
+    <!-- Modal para editar personas -->
+    <div class="modal" id="modalEditarPersona" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar persona</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEditarPersona">
+              <div class="mb-3">
+                <label for="fieldEditarNombrePersona" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="fieldEditarNombrePersona" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarFechaNacimientoPersona" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="fieldEditarFechaNacimientoPersona">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarFechaDefuncionPersona" class="form-label">Fecha de defunción (si no ha fallecio dejar vacio)</label>
+                <input type="date" class="form-control" id="fieldEditarFechaDefuncionPersona">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarWikiPersona" class="form-label">Wikipedia</label>
+                <input type="text" class="form-control" id="fieldEditarWikiPersona" placeholder="URL Wikipedia">
+              </div>
+              <div class="dropzone mb-3">
+                <label for="fieldEditarImagenPersona" class="form-label">Imagen</label>
+                <input type="file" class="form-control-file" id="fieldEditarImagenPersona">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="saveEditarPersona" type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div id="zonaAlerta">
       <div id="alerta">
       </div>
