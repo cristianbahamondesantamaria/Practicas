@@ -102,13 +102,25 @@ function mostrarEntidades() {
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + entidades[i].nombre + '</h5>');
     let detalles = $('<button class="detalles btn btn-primary" value= ' + i + '>Detalles</button>');
-    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" >Editar</button>');
+    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" value= ' + i + '>Editar</button>');
     let borrar = $('<button class="borrar btn btn-danger" style="display:none;" value= ' + i + '>Borrar</button>');
     detalles.click(function () {
       var entidades = JSON.parse(localStorage.getItem("entidades"));
       var entidad = entidades[$(this).val()];
       localStorage.setItem("entidadDetalles", JSON.stringify(entidad));
       window.location.href = 'detallesEntidad.html';
+    });
+    editar.click(function () {
+      var entidades = JSON.parse(localStorage.getItem("entidades"));
+      var entidad = entidades[$(this).val()];
+      $('#fieldEditarNombreEntidad').val(entidad.nombre);
+      $('#fieldEditarFechaCreacionEntidad').val(entidad.fechaCreacion);
+      $('#fieldEditarFechaDefuncionEntidad').val(entidad.fechaDefuncion);
+      $('#fieldEditarWikiEntidad').val(entidad.wikipedia);
+      var personas = entidad.personas.join(",");
+      $('#fieldEditarPersonasEntidad').val(personas);
+      $('#saveEditarEntidad').val($(this).val());
+      $('#modalEditarEntidad').modal('show');
     });
     borrar.click(function () {
       var entidades = JSON.parse(localStorage.getItem("entidades"));
@@ -142,7 +154,7 @@ function mostrarProductos() {
     let cartaBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + productos[i].nombre + '</h5>');
     let detalles = $('<button class="detalles btn btn-primary" value= ' + i + '>Detalles</button>');
-    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" >Editar</button>');
+    let editar = $('<button class="editar btn btn-primary me-1" style="display:none;" value= ' + i + '>Editar</button>');
     let borrar = $('<button class="borrar btn btn-danger" style="display:none;" value= ' + i + '>Borrar</button>');
     detalles.click(function () {
       var productos = JSON.parse(localStorage.getItem("productos"));
@@ -150,6 +162,22 @@ function mostrarProductos() {
       localStorage.setItem("productoDetalles", JSON.stringify(producto));
       window.location.href = 'detallesProducto.html';
     });
+    editar.click(function () {
+      var productos = JSON.parse(localStorage.getItem("productos"));
+      var producto = productos[$(this).val()];
+      $('#fieldEditarNombreProducto').val(producto.nombre);
+      $('#fieldEditarFechaCreacionProducto').val(producto.fechaCreacion);
+      $('#fieldEditarFechaDesaparicionProducto').val(producto.fechaDefuncion);
+      $('#fieldEditarWikiProducto').val(producto.wikipedia);
+      var personas = producto.personas.join(",");
+      $('#fieldEditarPersonasProducto').val(personas);
+      var entidades = producto.entidades.join(",");
+      $('#fieldEditarEntidadesProducto').val(entidades);
+      $('#saveEditarProducto').val($(this).val());
+      $('#modalEditarProducto').modal('show');
+    });
+
+
     borrar.click(function () {
       var productos = JSON.parse(localStorage.getItem("productos"));
       productos.splice($(this).val(), 1);
@@ -216,7 +244,7 @@ function init() {
     // Creo una entidad por defecto
     var personas = [];
     personas.push(persona.nombre);
-    var entidad = new Entidad("World Wide Web Consortium", "1994", "Actualidad", "/Resources/w3c.png", "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium", personas);
+    var entidad = new Entidad("World Wide Web Consortium", "1994-06-09", "Actualidad", "/Resources/w3c.png", "https://es.wikipedia.org/wiki/World_Wide_Web_Consortium", personas);
     var entidadesArray = [];
     entidadesArray.push(entidad);
     var entidadesJSON = JSON.stringify(entidadesArray);
@@ -249,7 +277,7 @@ window.addEventListener("load", init);
 function addPersona() {
   const nombre = $('#fieldNombrePersona').val();
   const fechaNacimiento = $('#fieldFechaNacimientoPersona').val();
-  const fechaMuerte = $('#fieldFechaDefuncionPersona').val();
+  var fechaMuerte = $('#fieldFechaDefuncionPersona').val();
   const wikipedia = $('#fieldWikiPersona').val();
   var imagen = $('#fieldImagenPersona').val();
   if (nombre != "" && fechaNacimiento != "" && wikipedia != "" && imagen != "") {
@@ -363,9 +391,10 @@ $(document).ready(function () {
 
   //Funcionalidad del botón de logout
   $('#logout-button').click(function () {
-    // Aquí va la lógica de la función de logout
     $('#logout-form').hide();
     $('#login-form').show();
+    $('#fieldUser').val("");
+    $('#fieldPassword').val("");
     $(".editar").hide();
     $(".borrar").hide();
     $(".agregar").hide();
@@ -385,7 +414,7 @@ $(document).ready(function () {
       if (fechaMuerte == "") {
         fechaMuerte = "Actualidad";
       }
-      if(imagen != ""){
+      if (imagen != "") {
         var reader = new FileReader();
         reader.onload = function (e) {
           imagen = e.target.result;
@@ -395,10 +424,10 @@ $(document).ready(function () {
           personas.splice(indice, 0, persona);
           var personasJSON = JSON.stringify(personas);
           localStorage.setItem("personas", personasJSON);
-         window.location.href = 'index.html';
+          window.location.href = 'index.html';
         }
         reader.readAsDataURL($('#fieldEditarImagenPersona')[0].files[0]);
-      }else{
+      } else {
         var personas = JSON.parse(localStorage.getItem("personas"));
         const persona = new Persona(nombre, fechaNacimiento, fechaMuerte, personas[indice].imagen, wikipedia);
         personas.splice(indice, 1);
@@ -407,7 +436,89 @@ $(document).ready(function () {
         localStorage.setItem("personas", personasJSON);
         window.location.href = 'index.html';
       }
-      
+
+    }
+  });
+
+  //Funcionalidad del botón de editarEntidad
+  $('#saveEditarEntidad').click(function () {
+    const nombre = $('#fieldEditarNombreEntidad').val();
+    const fechaCreacion = $('#fieldEditarFechaCreacionEntidad').val();
+    var fechaDesaparicion = $('#fieldEditarFechaDesaparicionEntidad').val();
+    const wikipedia = $('#fieldEditarWikiEntidad').val();
+    var personas = $('#fieldEditarPersonasEntidad').val();
+    personas = personas.split(",");
+    var imagen = $('#fieldEditarImagenEntidad').val();
+    var indice = $(this).val();
+    if (nombre != "" && fechaCreacion != "" && wikipedia != "") {
+      if (fechaDesaparicion == "") {
+        fechaDesaparicion = "Actualidad";
+      }
+      if (imagen != "") {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          imagen = e.target.result;
+          var entidades = JSON.parse(localStorage.getItem("entidades"));
+          const entidad = new Entidad(nombre, fechaCreacion, fechaDesaparicion, imagen, wikipedia, personas);
+          entidades.splice(indice, 1);
+          entidades.splice(indice, 0, entidad);
+          var entidadesJSON = JSON.stringify(entidades);
+          localStorage.setItem("entidades", entidadesJSON);
+          window.location.href = 'index.html';
+        }
+        reader.readAsDataURL($('#fieldEditarImagenEntidad')[0].files[0]);
+      } else {
+        var entidades = JSON.parse(localStorage.getItem("entidades"));
+        const entidad = new Entidad(nombre, fechaCreacion, fechaDesaparicion, entidades[indice].imagen, wikipedia, personas);
+        entidades.splice(indice, 1);
+        entidades.splice(indice, 0, entidad);
+        var entidadesJSON = JSON.stringify(entidades);
+        localStorage.setItem("entidades", entidadesJSON);
+        window.location.href = 'index.html';
+      }
+
+    }
+  });
+
+  //Funcionalidad del botón de editarProducto
+  $('#saveEditarProducto').click(function () {
+    const nombre = $('#fieldEditarNombreProducto').val();
+    const fechaCreacion = $('#fieldEditarFechaCreacionProducto').val();
+    var fechaDesaparicion = $('#fieldEditarFechaDesaparicionProducto').val();
+    const wikipedia = $('#fieldEditarWikiProducto').val();
+    var personas = $('#fieldEditarPersonasProducto').val();
+    personas = personas.split(",");
+    var entidades = $('#fieldEditarEntidadesProducto').val();
+    entidades = entidades.split(",");
+    var imagen = $('#fieldEditarImagenProducto').val();
+    var indice = $(this).val();
+    if (nombre != "" && fechaCreacion != "" && wikipedia != "") {
+      if (fechaDesaparicion == "") {
+        fechaDesaparicion = "Actualidad";
+      }
+      if (imagen != "") {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          imagen = e.target.result;
+          var productos = JSON.parse(localStorage.getItem("productos"));
+          const producto = new Producto(nombre, fechaCreacion, fechaDesaparicion, imagen, wikipedia, personas, entidades);
+          productos.splice(indice, 1);
+          productos.splice(indice, 0, producto);
+          var productosJSON = JSON.stringify(productos);
+          localStorage.setItem("productos", productosJSON);
+          window.location.href = 'index.html';
+        }
+        reader.readAsDataURL($('#fieldEditarImagenProducto')[0].files[0]);
+      } else {
+        var productos = JSON.parse(localStorage.getItem("productos"));
+        const producto = new Producto(nombre, fechaCreacion, fechaDesaparicion, productos[indice].imagen, wikipedia, personas, entidades);
+        productos.splice(indice, 1);
+        productos.splice(indice, 0, producto);
+        var productosJSON = JSON.stringify(productos);
+        localStorage.setItem("productos", productosJSON);
+        window.location.href = 'index.html';
+      }
+
     }
   });
 });

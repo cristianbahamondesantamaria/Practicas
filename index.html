@@ -155,7 +155,7 @@
                 <input type="text" class="form-control" id="fieldPersonasProducto" placeholder="Personas que participaron en la creacion">
               </div>
               <div class="mb-3">
-                <label for="fieldEntidadesProducto" class="form-label">Personas (separar personas unicamente por comas)</label>
+                <label for="fieldEntidadesProducto" class="form-label">Entidades (separar entidades unicamente por comas)</label>
                 <input type="text" class="form-control" id="fieldEntidadesProducto" placeholder="Entidades que participaron en la creacion">
               </div>
               <div class="dropzone mb-3">
@@ -191,7 +191,7 @@
                 <input type="date" class="form-control" id="fieldEditarFechaNacimientoPersona">
               </div>
               <div class="mb-3">
-                <label for="fieldEditarFechaDefuncionPersona" class="form-label">Fecha de defunción (si no ha fallecio dejar vacio)</label>
+                <label for="fieldEditarFechaDefuncionPersona" class="form-label">Fecha de defunción (si no ha fallecido dejar vacio)</label>
                 <input type="date" class="form-control" id="fieldEditarFechaDefuncionPersona">
               </div>
               <div class="mb-3">
@@ -207,6 +207,98 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button id="saveEditarPersona" type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para editar entidades -->
+    <div class="modal" id="modalEditarEntidad" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar entidad</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEditarEntidad">
+              <div class="mb-3">
+                <label for="fieldEditarNombreEntidad" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="fieldEditarNombreEntidad" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarFechaCreacionEntidad" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="fieldEditarFechaCreacionEntidad">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarFechaDefuncionEntidad" class="form-label">Fecha de defunción (si no ha fallecido dejar vacio)</label>
+                <input type="date" class="form-control" id="fieldEditarFechaDefuncionEntidad">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarWikiEntidad" class="form-label">Wikipedia</label>
+                <input type="text" class="form-control" id="fieldEditarWikiEntidad" placeholder="URL Wikipedia">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarPersonasEntidad" class="form-label">Personas (separar personas unicamente por comas)</label>
+                <input type="text" class="form-control" id="fieldEditarPersonasEntidad" placeholder="Personas que forman la entidad">
+              </div>
+              <div class="dropzone mb-3">
+                <label for="fieldEditarImagenEntidad" class="form-label">Imagen</label>
+                <input type="file" class="form-control-file" id="fieldEditarImagenEntidad">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="saveEditarEntidad" type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para editar productos -->
+    <div class="modal" id="modalEditarProducto" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Editar producto</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="formEditarEntidad">
+              <div class="mb-3">
+                <label for="fieldEditarNombreProducto" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="fieldEditarNombreProducto" placeholder="Nombre">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarFechaCreacionProducto" class="form-label">Fecha de nacimiento</label>
+                <input type="date" class="form-control" id="fieldEditarFechaCreacionProducto">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarFechaDesaparicionProducto" class="form-label">Fecha de defunción (si no ha fallecido dejar vacio)</label>
+                <input type="date" class="form-control" id="fieldEditarFechaDesaparicionProducto">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarWikiProducto" class="form-label">Wikipedia</label>
+                <input type="text" class="form-control" id="fieldEditarWikiProducto" placeholder="URL Wikipedia">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarPersonasProducto" class="form-label">Personas (separar personas unicamente por comas)</label>
+                <input type="text" class="form-control" id="fieldEditarPersonasProducto" placeholder="Personas que participaron en el producto">
+              </div>
+              <div class="mb-3">
+                <label for="fieldEditarEntidadesProducto" class="form-label">Entidades (separar entidades unicamente por comas)</label>
+                <input type="text" class="form-control" id="fieldEditarEntidadesProducto" placeholder="Entidades que participaron en el producto">
+              </div>
+              <div class="dropzone mb-3">
+                <label for="fieldEditarImagenProducto" class="form-label">Imagen</label>
+                <input type="file" class="form-control-file" id="fieldEditarImagenProducto">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button id="saveEditarProducto" type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
       </div>
