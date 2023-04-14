@@ -1,3 +1,7 @@
+function convertirFecha(fecha) {
+    return fecha.substring(0, fecha.indexOf("-"));
+}
+
 function mostrarProducto(){
     const detalles = JSON.parse(localStorage.getItem("productoDetalles"));
     const divPrincipal = $('#Detalles');
@@ -8,9 +12,9 @@ function mostrarProducto(){
     let colomright = $('<div class="col-md-8"></div>');
     let cardBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + detalles.nombre + '</h5>');
-    var muerte = "Actualidad" === detalles.fechaDefuncion ? "" : "y fallecio en " + detalles.fechaDefuncion;
+    var muerte = "" === detalles.fechaDefuncion ? "" : "y se ha dejado usar" + convertirFecha(detalles.fechaDefuncion);
     let descripcion = $('<p class="card-text">Se creo en '
-        + detalles.fechaCreacion + ' '
+        + convertirFecha(detalles.fechaCreacion) + ' '
         + muerte +
         '</p>');
     let wikipedia = $('<button class="btn btn-primary">Ir a Wikipedia</button>');

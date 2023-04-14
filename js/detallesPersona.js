@@ -1,3 +1,25 @@
+function convertirFecha(fecha) {
+    var fecha = new Date(fecha);
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var dicmeses = {
+        1: "Enero",
+        2: "Febrero",
+        3: "Marzo",
+        4: "Abril",
+        5: "Mayo",
+        6: "Junio",
+        7: "Julio",
+        8: "Agosto",
+        9: "Septiembre",
+        10: "Octubre",
+        11: "Noviembre",
+        12: "Diciembre"
+    };
+    var anio = fecha.getFullYear();
+    return dia + " de " + dicmeses[mes] + " de " + anio;
+}
+
 function mostrarPersona() {
     const detalles = JSON.parse(localStorage.getItem("personaDetalles"));
     const divPrincipal = $('#Detalles');
@@ -8,9 +30,9 @@ function mostrarPersona() {
     let colomright = $('<div class="col-md-8"></div>');
     let cardBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + detalles.nombre + '</h5>');
-    var muerte = "Actualidad" === detalles.fechaDefuncion ? "" : "y fallecio en " + detalles.fechaDefuncion;
-    let descripcion = $('<p class="card-text">Nació el '
-        + detalles.fechaNacimiento + ' '
+    var muerte = "" === detalles.fechaDefuncion ? "" : "y fallecio el " + convertirFecha(detalles.fechaDefuncion);
+    let descripcion = $('<p class="card-text ">Nació el '
+        + convertirFecha(detalles.fechaNacimiento) + ' '
         + muerte +
         '</p>');
     let wikipedia = $('<button class="btn btn-primary">Ir a Wikipedia</button>');
@@ -25,7 +47,7 @@ function mostrarPersona() {
     divPrincipal.append(colomright);
 }
 
-function mostrarProductos() {
+function mostrarProductosRelacionados() {
     const detalles = JSON.parse(localStorage.getItem("personaDetalles"));
     const productos = JSON.parse(localStorage.getItem("productos"));
     const divPrincipal = $('#Productos');
@@ -58,7 +80,7 @@ function mostrarProductos() {
     }
 }
 
-function mostrarEntidades() {
+function mostrarEntidadesRelacionadas() {
     const detalles = JSON.parse(localStorage.getItem("personaDetalles"));
     const entidades = JSON.parse(localStorage.getItem("entidades"));
     const divPrincipal = $('#Entidades');
@@ -93,7 +115,7 @@ function mostrarEntidades() {
 
 function mostrarDetalles() {
     mostrarPersona();
-    mostrarProductos();
-    mostrarEntidades();
+    mostrarProductosRelacionados();
+    mostrarEntidadesRelacionadas();
 }
 window.addEventListener("load", mostrarDetalles);

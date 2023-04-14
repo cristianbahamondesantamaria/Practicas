@@ -1,3 +1,25 @@
+function convertirFecha(fecha) {
+    var fecha = new Date(fecha);
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth() + 1;
+    var dicmeses = {
+        1: "Enero",
+        2: "Febrero",
+        3: "Marzo",
+        4: "Abril",
+        5: "Mayo",
+        6: "Junio",
+        7: "Julio",
+        8: "Agosto",
+        9: "Septiembre",
+        10: "Octubre",
+        11: "Noviembre",
+        12: "Diciembre"
+    };
+    var anio = fecha.getFullYear();
+    return dia + " de " + dicmeses[mes] + " de " + anio;
+}
+
 function mostrarEntidad(){
     const detalles = JSON.parse(localStorage.getItem("entidadDetalles"));
     const divPrincipal = $('#Detalles');
@@ -8,9 +30,9 @@ function mostrarEntidad(){
     let colomright = $('<div class="col-md-8"></div>');
     let cardBody = $('<div class="card-body"></div>');
     let titulo = $('<h5 class="card-title">' + detalles.nombre + '</h5>');
-    var muerte = "Actualidad" === detalles.fechaDefuncion ? "" : "y fallecio en " + detalles.fechaDefuncion;
-    let descripcion = $('<p class="card-text">Se fundo en '
-        + detalles.fechaCreacion + ' '
+    var muerte = "" === detalles.fechaDefuncion ? "" : "y se disolvió el " + convertirFecha(detalles.fechaDefuncion);
+    let descripcion = $('<p class="card-text">Se fundo el '
+        + convertirFecha(detalles.fechaCreacion) + ' '
         + muerte +
         '</p>');
     let wikipedia = $('<button class="btn btn-primary">Ir a Wikipedia</button>');
