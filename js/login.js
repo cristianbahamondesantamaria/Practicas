@@ -252,7 +252,7 @@ function init() {
     // Creo un producto por defecto
     var entidades = [];
     entidades.push(entidad.nombre);
-    var producto = new Producto("HTML", "1991-mm-dd", "", "/Resources/html.png", "https://es.wikipedia.org/wiki/HTML", personas, entidades);
+    var producto = new Producto("HTML", "1991-01-01", "", "/Resources/html.png", "https://es.wikipedia.org/wiki/HTML", personas, entidades);
     var productosArray = [];
     productosArray.push(producto);
     var productosJSON = JSON.stringify(productosArray);
@@ -282,7 +282,7 @@ $(document).ready(function () {
     var username = document.getElementById("fieldUser").value;
     var password = document.getElementById("fieldPassword").value;
     var users = JSON.parse(localStorage.getItem("users"));
-    var divAlerta= $('#zonaAlerta');
+    var divAlerta = $('#zonaAlerta');
     // Recorrer lista de usuarios y contraseñas
     for (var i = 0; i < users.length; i++) {
       if (username === users[i].username && password === users[i].password) {
