@@ -43,9 +43,9 @@ class Producto {
 function mostrarPersonas() {
   var personas = JSON.parse(localStorage.getItem("personas"));
   const divPrincipal = $('#Personas');
-  var imagen = new Image();
   for (var i = 0; i < personas.length; i++) {
     let cartaDiv = $('<div class="card my-3" style="width: 18rem;"></div>');
+    var imagen = new Image();
     imagen.src = personas[i].imagen;
     imagen.className = "card-img-top";
     let cartaBody = $('<div class="card-body"></div>');
@@ -95,9 +95,9 @@ function mostrarPersonas() {
 function mostrarEntidades() {
   var entidades = JSON.parse(localStorage.getItem("entidades"));
   const divPrincipal = $('#Entidades');
-  var imagen = new Image();
   for (var i = 0; i < entidades.length; i++) {
     let cartaDiv = $('<div class="card my-3" style="width: 18rem;"></div>');
+    var imagen = new Image();
     imagen.src = entidades[i].imagen;
     imagen.className = "card-img-top";
     let cartaBody = $('<div class="card-body"></div>');
