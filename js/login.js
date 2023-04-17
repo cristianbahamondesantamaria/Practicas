@@ -318,9 +318,6 @@ $(document).ready(function () {
     const wikipedia = $('#fieldWikiPersona').val();
     var imagen = $('#fieldImagenPersona').val();
     if (nombre != "" && fechaNacimiento != "" && wikipedia != "" && imagen != "") {
-      if (fechaMuerte == "") {
-        fechaMuerte = "Actualidad";
-      }
       var reader = new FileReader();
       reader.onload = function (e) {
         imagen = e.target.result;
@@ -343,9 +340,6 @@ $(document).ready(function () {
     var imagen = $('#fieldEditarImagenPersona').val();
     var indice = $(this).val();
     if (nombre != "" && fechaNacimiento != "" && wikipedia != "") {
-      if (fechaMuerte == "") {
-        fechaMuerte = "Actualidad";
-      }
       if (imagen != "") {
         var reader = new FileReader();
         reader.onload = function (e) {
@@ -444,9 +438,6 @@ $(document).ready(function () {
     entidades = entidades.split(",");
     var imagen = $('#fieldImagenProducto').val();
     if (nombre != "" && fechaCreacion != "" && wikipedia != "" && imagen != "") {
-      if (fechaDesaparicion == "") {
-        fechaDesaparicion = "Actualidad";
-      }
       var reader = new FileReader();
       reader.onload = function (e) {
         imagen = e.target.result;
@@ -474,9 +465,6 @@ $(document).ready(function () {
     var imagen = $('#fieldEditarImagenProducto').val();
     var indice = $(this).val();
     if (nombre != "" && fechaCreacion != "" && wikipedia != "") {
-      if (fechaDesaparicion == "") {
-        fechaDesaparicion = "Actualidad";
-      }
       if (imagen != "") {
         var reader = new FileReader();
         reader.onload = function (e) {
